@@ -29,8 +29,6 @@ namespace SortAlgorithm
         /// <returns>sorted array</returns>
         public static int[] BubbleSortInt(int[] _array)
         {
-            int[] vs = new int[_array.Length];
-            Array.Copy(_array, vs, _array.Length);
             int highestArrayToCheck = _array.Length;
             int temp = highestArrayToCheck;
 
@@ -38,7 +36,7 @@ namespace SortAlgorithm
 
             while (swapped)
             {
-                // reset swapped bool
+                // reset swapped bool and set highest position swapped
                 swapped = false;
                 highestArrayToCheck = temp;
 
@@ -46,10 +44,10 @@ namespace SortAlgorithm
                 for (int i = 0; i < highestArrayToCheck - 1; i++)
                 {
                     // check int of arrays
-                    if (vs[i] > vs[i + 1])
+                    if (_array[i] > _array[i + 1])
                     {
                         // swap array locations
-                        vs = (int[])SwapArrayPlace(vs, i, i + 1);
+                        _array = (int[])SwapArrayPlace(_array, i, i + 1);
                         swapped = true;
                         temp = i + 1;
                     }
@@ -58,7 +56,7 @@ namespace SortAlgorithm
 
             }
 
-            return vs;
+            return _array;
         }
 
         /// <summary>
@@ -86,30 +84,5 @@ namespace SortAlgorithm
             return _array;
         }
 
-        /// <summary>
-        /// Swap two positions from an array
-        /// </summary>
-        /// <param name="_array">array to swap</param>
-        /// <param name="_firstArrayLocation">first position to swap</param>
-        /// <param name="_secondArrayLocation">second position to swap</param>
-        /// <returns>new swapped array. returns null array when swap didnt work</returns>
-        //public static int[] SwapArrayPlace(int[] _array, int _firstArrayLocation, int _secondArrayLocation)
-        //{
-        //    int[] newArray = new int[_array.GetLength(0)];
-        //    Array.Copy(_array, newArray, _array.Length);
-        //
-        //    try
-        //    {
-        //        newArray.SetValue(_array.GetValue(_firstArrayLocation), _secondArrayLocation);
-        //        newArray.SetValue(_array.GetValue(_secondArrayLocation), _firstArrayLocation);
-        //    }
-        //    catch (IndexOutOfRangeException)
-        //    {
-        //        newArray = null;
-        //    }
-        //
-        //    return newArray;
-        //
-        //}
     }
 }
