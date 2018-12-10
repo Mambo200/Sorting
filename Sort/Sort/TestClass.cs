@@ -5,23 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SortAlgorithm;
+
 namespace Sort
 {
     [TestClass]
     public class TestClass
     {
+        Helper h = new Helper();
+
         [TestMethod]
         public void ArrayTest()
         {
+
             // set first array
-            int[] a1 = new int[3];
-            for (int i = 0; i < a1.Length; i++)
-            {
-                a1[i] = i;
-            }
+            int[] a1 = h.GiveIntArraySorted(3);
 
             // set second array
-            int[] a2 = new int[3];
+            int[] a2 = h.GiveIntArraySorted(3);
             a2[0] = 2;
             a2[1] = 1;
             a2[2] = 0;
@@ -39,11 +39,12 @@ namespace Sort
 
             Assert.AreEqual(null, a1);
         }
+
         [TestMethod]
         public void BubbleSort()
         {
-            int[] a1 = new int[5];
-            int[] a2 = new int[5];
+            int[] a1 = h.GiveIntArraySorted(5);
+            int[] a2 = h.GiveIntArraySorted(5);
             for (int i = 0; i < a1.Length; i++)
             {
                 a1[i] = i;
@@ -77,7 +78,7 @@ namespace Sort
             
 
             // shuffle array
-            a2 = ShuffleArray(a1, arraySize);
+            a2 = h.GiveIntArrayShuffle(a2);
 
             // sort array
             a2 = SortAlgorithmCSharp.BubbleSortInt(a2);
@@ -90,22 +91,6 @@ namespace Sort
 
         }
 
-        private int[] ShuffleArray(int[] _array, int _shuffle = 1000)
-        {
-            Random r = new Random();
-            int shuffle = _shuffle;
-            int[] vs = new int[_array.Length];
-            Array.Copy(_array, vs, vs.Length);
-            
-
-            while (shuffle != 0)
-            {
-                vs = (int[])SortAlgorithmCSharp.SwapArrayPlace(vs, r.Next(vs.Length), r.Next(vs.Length));
-                shuffle--;
-            }
-
-            return vs;
-        }
         
     }
 }
