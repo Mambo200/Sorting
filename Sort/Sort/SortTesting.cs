@@ -44,15 +44,10 @@ namespace Sort
         [TestMethod]
         public void BubbleSortInt()
         {
-            int[] a1 = h.GiveIntArraySorted(5);
-            int[] a2 = h.GiveIntArraySorted(5);
-            for (int i = 0; i < a1.Length; i++)
-            {
-                a1[i] = i;
-                a2[i] = a1.Length - i - 1;
-            }
-
-
+            int size = 5;
+            int[] a1;
+            int[] a2;
+            h.GiveTwoArrays(size, 0, out a1, out a2);
 
             a2 = SortAlgorithmCSharp.BubbleSort(a2);
 
@@ -81,7 +76,8 @@ namespace Sort
         [TestMethod]
         public void BubbleSortString2()
         {
-            string[] a1 = h.GiveStringArraySorted(10);
+            int size = 10;
+            string[] a1 = h.GiveStringArraySorted(size);
             string[] a2 = new string[a1.GetLength(0)];
 
             Array.Copy(a1, a2, a1.GetLength(0));
@@ -97,7 +93,9 @@ namespace Sort
         [TestMethod]
         public void BubbleSortStringExtreme()
         {
-            string[] a1 = h.GiveStringArraySorted(arraySize);
+            int size = arraySize;
+
+            string[] a1 = h.GiveStringArraySorted(size);
             string[] a2 = new string[a1.GetLength(0)];
 
             Array.Copy(a1, a2, a2.GetLength(0));
@@ -112,21 +110,12 @@ namespace Sort
         [TestMethod]
         public void BubbleSortExtreme()
         {
-            int[] a1 = new int[arraySize];
-            int[] a2 = new int[arraySize];
+            int size = arraySize;
+            int[] a1;
+            int[] a2;
 
-            // set arrays
-            for (int i = 0; i < a1.Length; i++)
-            {
-                a1[i] = i;
-                a2[i] = i;
-            }
-
+            h.GiveTwoArrays(size, 0, out a1, out a2);
             
-
-            // shuffle array
-            h.ArrayShuffle(a2);
-
             // sort array
             a2 = SortAlgorithmCSharp.BubbleSort(a2);
 
@@ -138,14 +127,13 @@ namespace Sort
         [TestMethod]
         public void FailSort()
         {
-            // set first array
-            int[] a1 = h.GiveIntArraySorted(10, 5, 10);
+            int size = 10;
 
-            // set second array
-            int[] a2 = h.GiveIntArraySorted(10, 5, 10);
+            int[] a1;
+            int[] a2;
 
             // test 1
-            h.ArrayShuffle(a2);
+            h.GiveTwoArrays(size, 5, 0, out a1, out a2);
 
             a2 = SortAlgorithmCSharp.FailSortInt(a2);
 
@@ -222,27 +210,30 @@ namespace Sort
         [TestMethod]
         public void FailSortExtreme()
         {
-            int[] a1 = h.GiveIntArraySorted(arraySize, arraySize);
-            int[] a2 = new int[a1.GetLength(0)];
+            int size = arraySize;
+            int[] a1;
+            int[] a2;
 
-            Array.Copy(a1, a2, a1.GetLength(0));
+            h.GiveTwoArrays(size, size, out a1, out a2);
 
-            h.ArrayShuffle(a2);
             a2 = SortAlgorithmCSharp.FailSortInt(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
         }
+
         [TestMethod]
         public void EasySortExtreme()
         {
-            // get array
-            int[] a1 = h.GiveIntArraySorted(arraySize, 435, 213);
-            int[] a2 = new int[a1.GetLength(0)];
-            Array.Copy(a1, a2, a1.GetLength(0));
+            int size = arraySize;
 
-            // shuffle array
-            h.ArrayShuffle(a2);
+            // get array
+            int[] a1;
+            int[] a2;
+
+
+            h.GiveTwoArrays(size, 435, 213, out a1, out a2);
+            Array.Copy(a1, a2, a1.GetLength(0));
 
             // sort array
             a2 = SortAlgorithmCSharp.FailSortInt(a2);
@@ -255,10 +246,12 @@ namespace Sort
         [TestMethod]
         public void LowestHighestSortInt()
         {
-            int[] a1 = h.GiveIntArraySorted(10);
-            int[] a2 = h.GiveIntArraySorted(10);
+            int size = 10;
 
-            h.ArrayShuffle(a2);
+            int[] a1;
+            int[] a2;
+
+            h.GiveTwoArrays(size, 0, out a1, out a2);
 
             a2 = SortAlgorithmCSharp.LowestHighestSortInt(a2);
 
@@ -266,17 +259,54 @@ namespace Sort
         }
 
         [TestMethod]
-        public void LoewstHighestSortIntExtreme()
+        public void LowestHighestSortIntExtreme()
         {
             int size = 10000;
-            int[] a1 = h.GiveIntArraySorted(size);
-            int[] a2 = h.GiveIntArraySorted(size);
+            int[] a1;
+            int[] a2;
 
-            h.ArrayShuffle(a2);
+            h.GiveTwoArrays(size, 0, out a1, out a2);
 
             a2 = SortAlgorithmCSharp.LowestHighestSortInt(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
+        }
+
+        [TestMethod]
+        public void SelectionSort()
+        {
+            int size = 20;
+
+            int[] a1;
+            int[] a2;
+
+            h.GiveTwoArrays(size, 0, out a1, out a2);
+
+            a2 = SortAlgorithmCSharp.SelectionSortInt(a2);
+
+            Assert.AreEqual(true, h.CheckArray(a1, a2));
+
+        }
+
+        [TestMethod]
+        public void SelectionSortExtreme()
+        {
+            int size = arraySize;
+            int[] a1;
+            int[] a2;
+
+            h.GiveTwoArrays(size, 0, out a1, out a2);
+
+            a2 = SortAlgorithmCSharp.SelectionSortInt(a2);
+
+            Assert.AreEqual(true, h.CheckArray(a1, a2));
+
+            h.GiveTwoArrays(size, 0, 10, 0, out a1, out a2);
+
+            a2 = SortAlgorithmCSharp.SelectionSortInt(a2);
+
+            Assert.AreEqual(true, h.CheckArray(a1, a2));
+
         }
     }
 }

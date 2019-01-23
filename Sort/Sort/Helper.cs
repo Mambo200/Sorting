@@ -25,7 +25,7 @@ namespace Sort
         /// Creates a sorted array from _start to _size with steps
         /// </summary>
         /// <param name="_size">size of array</param>
-        /// <param name="_step">array[i] = _start + (i * _step))</param>
+        /// <param name="_step">array[i] = _start + (i * _step)</param>
         /// <param name="_start">min number of array</param>
         /// <returns>new sorted array with steps</returns>
         public int[] GiveIntArraySorted(int _size, int _step, int _start)
@@ -46,7 +46,7 @@ namespace Sort
         /// <param name="_randomEnd">random number end</param>
         /// <param name="_start">min number of array</param>
         /// <returns>new sorted int array</returns>
-        public int[] GiveIntArraySorted(int _size, int _randomStart, int _randomEnd, int _start = 0)
+        public int[] GiveIntArraySorted(int _size, int _randomStart, int _randomEnd, int _start)
         {
             int[] array = new int[_size];
             
@@ -159,6 +159,114 @@ namespace Sort
         }
 
         /// <summary>
+        /// Creates one sorted array and one shuffeled array
+        /// </summary>
+        /// <param name="_size">size of array</param>
+        /// <param name="_start">Startnumber of array</param>
+        /// <param name="a1">sorted array</param>
+        /// <param name="a2">shuffeled array</param>
+        public void GiveTwoArrays(int _size, int _start, out int[] a1, out int[] a2)
+        {
+            a1 = GiveIntArraySorted(_size, _start);
+            a2 = GiveIntArraySorted(_size, _start);
+            Array.Copy(a1, a2, a2.GetLength(0));
+
+            ArrayShuffle(a2);
+        }
+
+        /// <summary>
+        /// Creates one sorted array and one shuffeled array
+        /// </summary>
+        /// <param name="_size">size of array</param>
+        /// <param name="_start">Startnumber of array</param>
+        /// <param name="_shuffleTimes">how many times shall array be shuffeled</param>
+        /// <param name="a1">sorted array</param>
+        /// <param name="a2">shuffeled array</param>
+        public void GiveTwoArraysShuffle(int _size, int _start, int _shuffleTimes, out int[] a1, out int[] a2)
+        {
+            a1 = GiveIntArraySorted(_size, _start);
+            a2 = GiveIntArraySorted(_size, _start);
+            Array.Copy(a1, a2, a2.GetLength(0));
+
+            ArrayShuffle(a2, _shuffleTimes);
+        }
+
+        /// <summary>
+        /// Creates one sorted array and one shuffeled array
+        /// </summary>
+        /// <param name="_size">size of array</param>
+        /// <param name="_step">array[i] = _start + (i * _step)</param>
+        /// <param name="_start">Startnumber of array</param>
+        /// <param name="a1">sorted array</param>
+        /// <param name="a2">shuffeled array</param>
+        public void GiveTwoArrays(int _size, int _step, int _start, out int[] a1, out int[] a2)
+        {
+            a1 = GiveIntArraySorted(_size, _step, _start);
+            a2 = GiveIntArraySorted(_size, _step, _start);
+            Array.Copy(a1, a2, a2.GetLength(0));
+
+            ArrayShuffle(a2);
+        }
+
+        /// <summary>
+        /// Creates one sorted array and one shuffeled array
+        /// </summary>
+        /// <param name="_size">size of array</param>
+        /// <param name="_step">array[i] = _start + (i * _step)</param>
+        /// <param name="_start">Startnumber of array</param>
+        /// <param name="_shuffleTimes">how many times shall array be shuffeled</param>
+        /// <param name="a1">sorted array</param>
+        /// <param name="a2">shuffeled array</param>
+        public void GiveTwoArraysShuffle(int _size, int _step, int _start, int _shuffleTimes, out int[] a1, out int[] a2)
+        {
+            a1 = GiveIntArraySorted(_size, _step, _start);
+            a2 = GiveIntArraySorted(_size, _step, _start);
+            Array.Copy(a1, a2, a2.GetLength(0));
+
+            ArrayShuffle(a2, _shuffleTimes);
+
+        }
+
+        /// <summary>
+        /// Creates one sorted array and one shuffeled array
+        /// </summary>
+        /// <param name="_size">size of array</param>
+        /// <param name="_randomStart">random number begin</param>
+        /// <param name="_randomEnd">random number end</param>
+        /// <param name="_start">Startnumber of array</param>
+        /// <param name="a1">sorted array</param>
+        /// <param name="a2">shuffeled array</param>
+        public void GiveTwoArrays(int _size, int _randomStart, int _randomEnd, int _start, out int[] a1, out int[] a2)
+        {
+            a1 = GiveIntArraySorted(_size, _randomStart, _randomEnd, _start);
+            a2 = GiveIntArraySorted(_size, _randomStart, _randomEnd, _start);
+            Array.Copy(a1, a2, a2.GetLength(0));
+
+            ArrayShuffle(a2);
+        }
+
+        /// <summary>
+        /// Creates one sorted array and one shuffeled array
+        /// </summary>
+        /// <param name="_size">size of array</param>
+        /// <param name="_randomStart">random number begin</param>
+        /// <param name="_randomEnd">random number end</param>
+        /// <param name="_start">Startnumber of array</param>
+        /// <param name="_shuffleTimes">how many times shall array be shuffeled</param>
+        /// <param name="a1">sorted array</param>
+        /// <param name="a2">shuffeled array</param>
+        public void GiveTwoArraysShuffle(int _size, int _randomStart, int _randomEnd, int _start, int _shuffleTimes, out int[] a1, out int[] a2)
+        {
+            a1 = GiveIntArraySorted(_size, _randomStart, _randomEnd, _start);
+            a2 = GiveIntArraySorted(_size, _randomStart, _randomEnd, _start);
+            Array.Copy(a1, a2, a2.GetLength(0));
+
+            ArrayShuffle(a2);
+
+            ArrayShuffle(a2, _shuffleTimes);
+        }
+
+        /// <summary>
         /// convert a number to char
         /// </summary>
         /// <param name="_number">number</param>
@@ -232,5 +340,7 @@ namespace Sort
             }
             return s;
         }
+
+        
     }
 }

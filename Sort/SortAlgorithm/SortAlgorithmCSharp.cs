@@ -217,6 +217,41 @@ namespace SortAlgorithm
 
             return arrayToReturn;
         }
+
+        /// <summary>
+        /// Sorting int values, takes the lowest value and swap it with the first item, then second and so on.
+        /// </summary>
+        /// <param name="_array">array to sort</param>
+        /// <returns>new sorted array</returns>
+        public static int[] SelectionSortInt(int[] _array)
+        {
+            int[] arrayToRetun = new int[_array.GetLength(0)];
+            Array.Copy(_array, arrayToRetun, arrayToRetun.GetLength(0));
+
+            for (int i = 0; i < arrayToRetun.GetLength(0); i++)
+            {
+                int lowest = int.MaxValue;
+                int positionToSwap = -1;
+                for (int y = i; y < arrayToRetun.GetLength(0); y++)
+                {
+                    // get lowest number and array position
+                    if (arrayToRetun[y] < lowest)
+                    {
+                        lowest = arrayToRetun[y];
+                        positionToSwap = y;
+                    }
+
+                }
+
+                // swap array places
+                if (positionToSwap >= 0)
+                {
+                    arrayToRetun = (int[])SwapArrayPlace(arrayToRetun, i, positionToSwap);
+                }
+            }
+
+            return arrayToRetun;
+        }
         /// <summary>
         /// Swap two positions from an array
         /// </summary>
