@@ -252,6 +252,48 @@ namespace SortAlgorithm
 
             return arrayToRetun;
         }
+
+        public static int[] CocktailSort(int[] _array)
+        {
+            int[] arrayToReturn = new int[_array.GetLength(0)];
+            Array.Copy(_array, arrayToReturn, _array.GetLength(0));
+            bool swapped = false;
+
+            for (int i = 0; i < _array.GetLength(0); i++)
+            {
+                // reset flag
+                swapped = false;
+
+                // from low to high
+                for (int y = 0; y < _array.GetLength(0) - (i + 1); y++)
+                {
+                    if (arrayToReturn[y] > arrayToReturn[y + 1])
+                    {
+                        SwapArrayPlace(arrayToReturn, y, y + 1);
+                        swapped = true;
+                    }
+                }
+
+                // from high to low
+                for (int y = _array.GetLength(0) - (i + 1); y >= i + 1; y--)
+                {
+                    if (arrayToReturn[y - 1] > arrayToReturn[y])
+                    {
+                        SwapArrayPlace(arrayToReturn, y - 1, y);
+                        swapped = true;
+                    }
+                }
+
+                // check if something was changed
+                if (swapped == false)
+                {
+                    break;
+                }
+            }
+
+            return arrayToReturn;
+        }
+
         /// <summary>
         /// Swap two positions from an array
         /// </summary>
