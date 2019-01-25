@@ -308,5 +308,32 @@ namespace Sort
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
         }
+
+        [TestMethod]
+        public void CocktailSort()
+        {
+            int size = 20;
+            int[] a1;
+            int[] a2;
+            h.GiveTwoArrays(size, 0, out a1, out a2);
+
+            a2 = SortAlgorithmCSharp.CocktailSort(a2);
+
+            Assert.AreEqual(true, h.CheckArray(a1, a2));
+        }
+
+        [TestMethod]
+        public void CocktailSortExtreme()
+        {
+            int size = arraySize;
+
+            int[] a1;
+            int[] a2;
+            h.GiveTwoArrays(size, 0, out a1, out a2);
+
+            a2 = SortAlgorithmCSharp.CocktailSort(a2);
+
+            Assert.AreEqual(true, h.CheckArray(a1, a2));
+        }
     }
 }
