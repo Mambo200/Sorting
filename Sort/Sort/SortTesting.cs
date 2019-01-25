@@ -9,9 +9,9 @@ using SortAlgorithm;
 namespace Sort
 {
     [TestClass]
-    public class SortTesting
+    public class BubbleSorting
     {
-        int arraySize = 10000;
+        int arraySize = Helper.arraySize;
         Helper h = new Helper();
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace Sort
 
             // test
             Assert.AreEqual(true, h.CheckArray(a1, a2));
-            
+
 
             a1 = (int[])SortAlgorithmCSharp.SwapArrayPlace(a1, -1, 5);
 
@@ -115,7 +115,7 @@ namespace Sort
             int[] a2;
 
             h.GiveTwoArrays(size, 0, out a1, out a2);
-            
+
             // sort array
             a2 = SortAlgorithmCSharp.BubbleSort(a2);
 
@@ -123,6 +123,13 @@ namespace Sort
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
         }
+    }
+
+    [TestClass]
+    public class FailSorting
+    {
+        int arraySize = Helper.arraySize;
+        Helper h = new Helper();
 
         [TestMethod]
         public void FailSort()
@@ -150,10 +157,10 @@ namespace Sort
             a1[7] = 41234;
             a1[8] = 3482309;
             a1[9] = 22432253;
-            
+
             Array.Copy(a1, a2, a1.GetLength(0));
             h.ArrayShuffle(a2);
-            
+
             a2 = SortAlgorithmCSharp.FailSortInt(a2);
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
@@ -165,7 +172,7 @@ namespace Sort
 
             a2 = SortAlgorithmCSharp.FailSortInt(a2);
             Assert.AreEqual(false, h.CheckArray(a1, a2));
-            
+
             // test 4
             a1[0] = -5;
             a1[1] = 0;
@@ -242,6 +249,13 @@ namespace Sort
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
         }
+    }
+
+    [TestClass]
+    public class LowestHighestSorting
+    {
+        int arraySize = Helper.arraySize;
+        Helper h = new Helper();
 
         [TestMethod]
         public void LowestHighestSortInt()
@@ -271,6 +285,13 @@ namespace Sort
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
         }
+    }
+
+    [TestClass]
+    public class SelectionSorting
+    {
+        int arraySize = Helper.arraySize;
+        Helper h = new Helper();
 
         [TestMethod]
         public void SelectionSort()
@@ -308,6 +329,13 @@ namespace Sort
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
         }
+    }
+
+    [TestClass]
+    public class CocktailSorting
+    {
+        int arraySize = Helper.arraySize;
+        Helper h = new Helper();
 
         [TestMethod]
         public void CocktailSort()

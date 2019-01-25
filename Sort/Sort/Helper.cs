@@ -8,6 +8,7 @@ namespace Sort
 {
     public class Helper
     {
+        public static int arraySize = 10000;
         private static Random r = new Random();
 
         /// <summary>
