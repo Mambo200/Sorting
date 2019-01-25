@@ -27,18 +27,9 @@ namespace Sort
             a2[1] = 1;
             a2[2] = 0;
 
-            Assert.AreEqual(false, h.CheckArray(a1, a2));
+            SortAlgorithmCSharp.SwapArrayPlace(a2, 0, 2);
 
-            // swap array
-            a1 = (int[])SortAlgorithmCSharp.SwapArrayPlace(a1, 0, 2);
-
-            // test
             Assert.AreEqual(true, h.CheckArray(a1, a2));
-
-
-            a1 = (int[])SortAlgorithmCSharp.SwapArrayPlace(a1, -1, 5);
-
-            Assert.AreEqual(null, a1);
         }
 
         [TestMethod]
@@ -257,6 +248,19 @@ namespace Sort
         }
 
         [TestMethod]
+        public void LowestHighestSortInt2()
+        {
+            int[] a1 = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] a2 = new int[] { 0, 8, 4, 6, 3, 1, 7, 2, 9, 5 };
+          //int[] a2 = new int[] { 0, 5, 2, 3, 6, 4, 7, 8, 1, 9 };
+            
+
+            a2 = a2 = SortAlgorithmCSharp.LowestHighestSortInt(a2);
+
+            Assert.AreEqual(true, h.CheckArray(a1, a2));
+        }
+
+        [TestMethod]
         public void LowestHighestSortIntExtreme()
         {
             int size = 10000;
@@ -345,6 +349,21 @@ namespace Sort
             SortAlgorithmCSharp.CocktailSort(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
+        }
+    }
+}
+
+namespace Failure
+{
+    [TestClass]
+    public static class FailueClass
+    {
+        [TestMethod]
+        public static void Testing()
+        {
+            int[] a1 = new int[] { 0, 2, 4, 6, 8, 10 };
+
+            SortAlgorithmCSharp.SwapArrayPlace(a1, 0, 80);
         }
     }
 }
