@@ -48,7 +48,7 @@ namespace Sort
        
             h.GiveTwoArrays(size, 0, out int[] a1, out int[] a2);
 
-            a2 = SortAlgorithmCSharp.BubbleSort(a2);
+            SortAlgorithmCSharp.BubbleSort(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
         }
@@ -67,7 +67,7 @@ namespace Sort
 
             h.ArrayShuffle(a2);
 
-            a2 = SortAlgorithmCSharp.BubbleSort(a2);
+            SortAlgorithmCSharp.BubbleSort(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
         }
@@ -83,7 +83,7 @@ namespace Sort
 
             h.ArrayShuffle(a2);
 
-            a2 = SortAlgorithmCSharp.BubbleSort(a2);
+            SortAlgorithmCSharp.BubbleSort(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
@@ -101,7 +101,7 @@ namespace Sort
 
             h.ArrayShuffle(a2);
 
-            a2 = SortAlgorithmCSharp.BubbleSort(a2);
+            SortAlgorithmCSharp.BubbleSort(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
         }
@@ -114,7 +114,7 @@ namespace Sort
             h.GiveTwoArrays(size, 0, out int[] a1, out int[] a2);
 
             // sort array
-            a2 = SortAlgorithmCSharp.BubbleSort(a2);
+            SortAlgorithmCSharp.BubbleSort(a2);
 
             // check array
             Assert.AreEqual(true, h.CheckArray(a1, a2));
@@ -136,7 +136,7 @@ namespace Sort
             // test 1
             h.GiveTwoArrays(size, 5, 0, out int[] a1, out int[] a2);
 
-            a2 = SortAlgorithmCSharp.FailSortInt(a2);
+            a2 = a2 = SortAlgorithmCSharp.FailSortInt(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
@@ -281,7 +281,7 @@ namespace Sort
             int size = 20;
             h.GiveTwoArrays(size, 0, out int[] a1, out int[] a2);
 
-            a2 = SortAlgorithmCSharp.SelectionSortInt(a2);
+            SortAlgorithmCSharp.SelectionSortInt(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
@@ -294,13 +294,13 @@ namespace Sort
             
             h.GiveTwoArrays(size, 0, out int[] a1, out int[] a2);
 
-            a2 = SortAlgorithmCSharp.SelectionSortInt(a2);
+            SortAlgorithmCSharp.SelectionSortInt(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
             h.GiveTwoArrays(size, 0, 10, 0, out a1, out a2);
 
-            a2 = SortAlgorithmCSharp.SelectionSortInt(a2);
+            SortAlgorithmCSharp.SelectionSortInt(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
 
@@ -319,7 +319,7 @@ namespace Sort
             int size = 20;
             h.GiveTwoArrays(size, 0, out int[] a1, out int[] a2);
 
-            a2 = SortAlgorithmCSharp.CocktailSort(a2);
+            SortAlgorithmCSharp.CocktailSort(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
         }
@@ -329,7 +329,7 @@ namespace Sort
         {
             int size = 20;
             h.GiveTwoArrays(size, 0, 20, 0, out int[] a1, out int[] a2);
-            a2 = SortAlgorithmCSharp.CocktailSort(a2);
+            SortAlgorithmCSharp.CocktailSort(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
             
@@ -342,7 +342,7 @@ namespace Sort
 
             h.GiveTwoArrays(size, 0, out int[] a1, out int[] a2);
 
-            a2 = SortAlgorithmCSharp.CocktailSort(a2);
+            SortAlgorithmCSharp.CocktailSort(a2);
 
             Assert.AreEqual(true, h.CheckArray(a1, a2));
         }

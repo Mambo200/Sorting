@@ -18,8 +18,8 @@ namespace SortAlgorithm
             // convert to array
             int[] vs = new int[_list.Count];
             Array.Copy(_list.ToArray(), vs, _list.Count);
-
-            return BubbleSort(vs).ToList();
+            BubbleSort(vs);
+            return vs.ToList();
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace SortAlgorithm
         /// </summary>
         /// <param name="_array">array to sort</param>
         /// <returns>sorted array</returns>
-        public static int[] BubbleSort(int[] _array)
+        public static void BubbleSort(int[] _array)
         {
             int highestArrayToCheck = _array.Length;
             int temp = highestArrayToCheck;
@@ -55,8 +55,6 @@ namespace SortAlgorithm
                 }
 
             }
-
-            return _array;
         }
 
         /// <summary>
@@ -64,7 +62,7 @@ namespace SortAlgorithm
         /// </summary>
         /// <param name="_array">array to sort</param>
         /// <returns>sorted array</returns>
-        public static string[] BubbleSort(string[] _array)
+        public static void BubbleSort(string[] _array)
         {
             int highestArrayToCheck = _array.Length;
             int temp = highestArrayToCheck;
@@ -111,8 +109,6 @@ namespace SortAlgorithm
                 }
 
             }
-
-            return _array;
         }
 
 
@@ -214,30 +210,26 @@ namespace SortAlgorithm
                 listToSort.Remove(valHighest);
                 place++;
             }
-
             return arrayToReturn;
         }
 
         /// <summary>
         /// Sorting int values, takes the lowest value and swap it with the first item, then second and so on.
         /// </summary>
-        /// <param name="_array">array to sort</param>
+        /// <param name="_arrayy">array to sort</param>
         /// <returns>new sorted array</returns>
-        public static int[] SelectionSortInt(int[] _array)
+        public static void SelectionSortInt(int[] _array)
         {
-            int[] arrayToRetun = new int[_array.GetLength(0)];
-            Array.Copy(_array, arrayToRetun, arrayToRetun.GetLength(0));
-
-            for (int i = 0; i < arrayToRetun.GetLength(0); i++)
+            for (int i = 0; i < _array.GetLength(0); i++)
             {
                 int lowest = int.MaxValue;
                 int positionToSwap = -1;
-                for (int y = i; y < arrayToRetun.GetLength(0); y++)
+                for (int y = i; y < _array.GetLength(0); y++)
                 {
                     // get lowest number and array position
-                    if (arrayToRetun[y] < lowest)
+                    if (_array[y] < lowest)
                     {
-                        lowest = arrayToRetun[y];
+                        lowest = _array[y];
                         positionToSwap = y;
                     }
 
@@ -246,17 +238,13 @@ namespace SortAlgorithm
                 // swap array places
                 if (positionToSwap >= 0)
                 {
-                    arrayToRetun = (int[])SwapArrayPlace(arrayToRetun, i, positionToSwap);
+                    _array = (int[])SwapArrayPlace(_array, i, positionToSwap);
                 }
             }
-
-            return arrayToRetun;
         }
 
-        public static int[] CocktailSort(int[] _array)
+        public static void CocktailSort(int[] _array)
         {
-            int[] arrayToReturn = new int[_array.GetLength(0)];
-            Array.Copy(_array, arrayToReturn, _array.GetLength(0));
             bool swapped = false;
 
             for (int i = 0; i < _array.GetLength(0); i++)
@@ -267,9 +255,9 @@ namespace SortAlgorithm
                 // from low to high
                 for (int y = 0; y < _array.GetLength(0) - (i + 1); y++)
                 {
-                    if (arrayToReturn[y] > arrayToReturn[y + 1])
+                    if (_array[y] > _array[y + 1])
                     {
-                        SwapArrayPlace(arrayToReturn, y, y + 1);
+                        SwapArrayPlace(_array, y, y + 1);
                         swapped = true;
                     }
                 }
@@ -277,9 +265,9 @@ namespace SortAlgorithm
                 // from high to low
                 for (int y = _array.GetLength(0) - (i + 1); y >= i + 1; y--)
                 {
-                    if (arrayToReturn[y - 1] > arrayToReturn[y])
+                    if (_array[y - 1] > _array[y])
                     {
-                        SwapArrayPlace(arrayToReturn, y - 1, y);
+                        SwapArrayPlace(_array, y - 1, y);
                         swapped = true;
                     }
                 }
@@ -290,8 +278,6 @@ namespace SortAlgorithm
                     break;
                 }
             }
-
-            return arrayToReturn;
         }
 
         /// <summary>
