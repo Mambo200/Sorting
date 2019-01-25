@@ -124,7 +124,7 @@ namespace Sort
         {
             for (int i = 0; i < _shuffelTimes; i++)
             {
-                _array = SortAlgorithm.SortAlgorithmCSharp.SwapArrayPlace(
+                SortAlgorithm.SortAlgorithmCSharp.SwapArrayPlace(
                     _array, 
                     r.Next(_array.Length), 
                     r.Next(_array.Length)
@@ -134,6 +134,7 @@ namespace Sort
 
         /// <summary>
         /// Array Equal (only first dimension)
+        /// IMPORTANT: Method can only return true or throw an exception!
         /// </summary>
         /// <param name="_array1">first array</param>
         /// <param name="_array2">second array</param>
@@ -153,7 +154,7 @@ namespace Sort
                     equal = false;
 
                 if (equal == false)
-                    break;
+                    throw new NotEqualException(arrayV1, arrayV2, i);
             }
 
             return equal;

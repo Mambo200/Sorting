@@ -12,7 +12,6 @@ namespace SortAlgorithm
         /// Sort int list (Bubble Sort Algorithm)
         /// </summary>
         /// <param name="_list">list to sort (uses array variety)</param>
-        /// <returns>sorted list</returns>
         public static List<int> BubbleSort(List<int> _list)
         {
             // convert to array
@@ -26,7 +25,6 @@ namespace SortAlgorithm
         /// Sort int array (Bubble Sort Algorithm)
         /// </summary>
         /// <param name="_array">array to sort</param>
-        /// <returns>sorted array</returns>
         public static void BubbleSort(int[] _array)
         {
             int highestArrayToCheck = _array.Length;
@@ -47,7 +45,7 @@ namespace SortAlgorithm
                     if (_array[i] > _array[i + 1])
                     {
                         // swap array locations
-                        _array = (int[])SwapArrayPlace(_array, i, i + 1);
+                        SwapArrayPlace(_array, i, i + 1);
                         swapped = true;
                         temp = i + 1;
                     }
@@ -61,7 +59,6 @@ namespace SortAlgorithm
         /// Sort string array (Bubble Sort Algorithm)
         /// </summary>
         /// <param name="_array">array to sort</param>
-        /// <returns>sorted array</returns>
         public static void BubbleSort(string[] _array)
         {
             int highestArrayToCheck = _array.Length;
@@ -88,7 +85,7 @@ namespace SortAlgorithm
                         {
                             if (a1.GetLength(0) != 0)
                             {
-                                _array = (string[])SwapArrayPlace(_array, i, i + 1);
+                                SwapArrayPlace(_array, i, i + 1);
                                 swapped = true;
                                 temp = i + 1;
                                 break;
@@ -96,7 +93,7 @@ namespace SortAlgorithm
                         }
                         if (a1[n] > a2[n])
                         {
-                            _array = (string[])SwapArrayPlace(_array, i, i + 1);
+                            SwapArrayPlace(_array, i, i + 1);
                             swapped = true;
                             temp = i + 1;
                             break;
@@ -174,9 +171,66 @@ namespace SortAlgorithm
         /// Sorting int values and takes the lowest and highest value and puts it in a new array
         /// </summary>
         /// <param name="_array">array to sort</param>
-        /// <returns>new sorted array</returns>
         public static int[] LowestHighestSortInt(int[] _array)
         {
+            #region no return (fail)
+            //bool swapped = true;
+            //int count = -1;
+            //do
+            //{
+            //    count++;
+            //    int posLowest = -1;
+            //    int posHighest = -1;
+            //    swapped = false;
+            //    int valHighest = int.MinValue;
+            //    int valLowest = int.MaxValue;
+            //
+            //    for (int i = 0 + count; i < _array.GetLength(0) - count; i++)
+            //    {
+            //
+            //        // get lowest and highest number
+            //        if (_array[i] < valLowest)
+            //        {
+            //            valLowest = _array[i];
+            //            posLowest = i;
+            //            swapped = true;
+            //        }
+            //        if (_array[i] > valHighest)
+            //        {
+            //            valHighest = _array[i];
+            //            posHighest = i;
+            //            swapped = true;
+            //        }
+            //
+            //    }
+            //    // swap
+            //    if (swapped)
+            //    {
+            //        if (posLowest == valLowest && posHighest == valHighest)
+            //        {
+            //            // do nothing
+            //        }
+            //        else if (valLowest == posHighest && valHighest == posLowest)
+            //        {
+            //            SwapArrayPlace(_array, posHighest, posLowest);
+            //        }
+            //        else if (posHighest == )
+            //        {
+            //
+            //        }
+            //        else
+            //        {
+            //
+            //        if (posLowest >= 0)
+            //            SwapArrayPlace(_array, count, posLowest);
+            //        if (posHighest >= 0)
+            //            SwapArrayPlace(_array, _array.GetLength(0) - (1 + count), posHighest);
+            //        }
+            //    }
+            //
+            //} while (swapped);
+            #endregion
+
             int[] arrayToReturn = new int[_array.GetLength(0)];
             List<int> listToSort = _array.ToList();
             int place = 0;
@@ -184,7 +238,7 @@ namespace SortAlgorithm
             {
                 int valHighest = int.MinValue;
                 int valLowest = int.MaxValue;
-
+            
                 foreach (int number in listToSort)
                 {
                     // check highest and lowest number
@@ -199,12 +253,12 @@ namespace SortAlgorithm
                         if (number < valLowest)
                             valLowest = number;
                     }
-
+            
                 }
                 // add lowest and highest value to array
                 arrayToReturn[place] = valLowest;
                 arrayToReturn[arrayToReturn.GetLength(0) - (place + 1)] = valHighest;
-
+            
                 // remove values from list
                 listToSort.Remove(valLowest);
                 listToSort.Remove(valHighest);
@@ -216,8 +270,7 @@ namespace SortAlgorithm
         /// <summary>
         /// Sorting int values, takes the lowest value and swap it with the first item, then second and so on.
         /// </summary>
-        /// <param name="_arrayy">array to sort</param>
-        /// <returns>new sorted array</returns>
+        /// <param name="_array">array to sort</param>
         public static void SelectionSortInt(int[] _array)
         {
             for (int i = 0; i < _array.GetLength(0); i++)
@@ -238,11 +291,15 @@ namespace SortAlgorithm
                 // swap array places
                 if (positionToSwap >= 0)
                 {
-                    _array = (int[])SwapArrayPlace(_array, i, positionToSwap);
+                    SwapArrayPlace(_array, i, positionToSwap);
                 }
             }
         }
-
+        
+        /// <summary>
+        /// Sorting int values, functions like an advanced version of bubble sort
+        /// </summary>
+        /// <param name="_array">array to sort</param>
         public static void CocktailSort(int[] _array)
         {
             bool swapped = false;
@@ -287,22 +344,31 @@ namespace SortAlgorithm
         /// <param name="_firstArrayLocation">first position to swap</param>
         /// <param name="_secondArrayLocation">second position to swap</param>
         /// <returns>new swapped array. returns null array when swap didnt work (Out of Range Exception)</returns>
-        public static Array SwapArrayPlace(Array _array, int _firstArrayLocation, int _secondArrayLocation)
+        public static void SwapArrayPlace(Array _array, int _firstArrayLocation, int _secondArrayLocation)
         {
-            try
+            if (_firstArrayLocation < 0 || _firstArrayLocation >= _array.GetLength(0))
             {
-                var p1 = _array.GetValue(_firstArrayLocation);
-                var p2 = _array.GetValue(_secondArrayLocation);
+                ArgumentOutOfRangeException oor = new ArgumentOutOfRangeException
+                    (
+                    "_firstArrayLocation",
+                    _firstArrayLocation.ToString() + " was too high or too low. Array lengt is " + _array.Length
+                    );
+                throw oor;
+            }
+            else if (_secondArrayLocation < 0 || _secondArrayLocation >= _array.Length)
+            {
+                ArgumentOutOfRangeException oor = new ArgumentOutOfRangeException
+                    (
+                    "_firstArrayLocation",
+                    _secondArrayLocation.ToString() + " was too high or too low. Array lengt is " + _array.Length
+                    );
+                throw oor;
+            }
+            var p1 = _array.GetValue(_firstArrayLocation);
+            var p2 = _array.GetValue(_secondArrayLocation);
 
-                _array.SetValue(p2, _firstArrayLocation);
-                _array.SetValue(p1, _secondArrayLocation);
-            }
-            catch (IndexOutOfRangeException)
-            {
-                _array = null;
-            }
-            
-            return _array;
+            _array.SetValue(p2, _firstArrayLocation);
+            _array.SetValue(p1, _secondArrayLocation);
         }
 
     }
