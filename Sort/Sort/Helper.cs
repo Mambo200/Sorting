@@ -269,6 +269,29 @@ namespace Sort
         }
 
         /// <summary>
+        /// creates a random string. 
+        /// Using the Method <see cref="SortAlgorithm.Converting.BinaryToChar(string)"/>
+        /// </summary>
+        /// <param name="_length">length of the string</param>
+        /// <returns>random string</returns>
+        public string GetRandomString(int _length)
+        {
+            string toReturn = "";
+            for (int i = 0; i < _length; i++)
+            {
+                string binary = "";
+                for (int y = 0; y < 8; y++)
+                {
+                    binary += r.Next(2);
+                }
+
+                toReturn += SortAlgorithm.Converting.BinaryToChar(binary);
+            }
+
+            return toReturn;
+        }
+
+        /// <summary>
         /// convert a number to char
         /// </summary>
         /// <param name="_number">number</param>
