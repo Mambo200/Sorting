@@ -351,19 +351,72 @@ namespace Sort
             Assert.AreEqual(true, h.CheckArray(a1, a2));
         }
     }
+
+    [TestClass]
+    public class ShellSorting
+    {
+        int ArraySize { get { return Helper.arraySize; } }
+        Helper h = new Helper();
+
+        [TestMethod]
+        public void ShellSortInt()
+        {
+
+            h.GiveTwoArrays(100, 0, out int[] a1, out int[] a2);
+
+            SortAlgorithmCSharp.ShellSortInt(a2);
+
+            Assert.AreEqual(true, h.CheckArray(a1, a2));
+        }
+
+        [TestMethod]
+        public void ShellSortIntExtreme()
+        {
+            h.GiveTwoArrays(ArraySize, 0, out int[] a1, out int[] a2);
+
+            SortAlgorithmCSharp.ShellSortInt(a2);
+
+            Assert.AreEqual(true, h.CheckArray(a1, a2));
+        }
+    }
 }
 
-namespace Failure
+
+namespace ConvertingStuff
 {
     [TestClass]
-    public static class FailueClass
+    public class CharStringByte
     {
         [TestMethod]
-        public static void Testing()
+        public void CharToByte()
         {
-            int[] a1 = new int[] { 0, 2, 4, 6, 8, 10 };
+            Sort.Helper h = new Sort.Helper();
+            {
+                char c = '@';
+                string s = Converting.CharToBinary(c);
+                Assert.AreEqual(s, "01000000");
+            }
 
-            SortAlgorithmCSharp.SwapArrayPlace(a1, 0, 80);
+            {
+                char c = 'E';
+                string binary = Converting.CharToBinary(c);
+                char s = Converting.BinaryToChar(binary);
+                Assert.AreEqual(c, s);
+            }
+
+            {
+                string s = "HhAaLlLlOo! WwAaSs GgEeHhTt?";
+                string[] binary = Converting.StringToBinary(s);
+                string back = Converting.BinaryToString(binary);
+                Assert.AreEqual(s, back);
+            }
+
+            {
+                string s = h.GetRandomString(10);
+                string[] binary = Converting.StringToBinary(s);
+                string aCon = Converting.BinaryToString(binary);
+                Assert.AreEqual(s, aCon);
+            }
         }
     }
 }

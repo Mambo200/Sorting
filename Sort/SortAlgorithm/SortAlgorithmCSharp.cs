@@ -338,12 +338,42 @@ namespace SortAlgorithm
         }
 
         /// <summary>
+        /// Sorting int values. I don't even know sorry. Code From <b> https://de.wikipedia.org/wiki/Shellsort#Java </b>
+        /// </summary>
+        /// <param name="_array">array to sort</param>
+        public static void ShellSortInt(int[] _array)
+        {
+            int i, j, k, h, t;
+
+            int[] spalten = new int[_array.Length];
+            Array.Copy(_array, spalten, _array.Length);
+
+            for (k = 0; k < spalten.Length; k++)
+            {
+                h = spalten[k];
+                // Sortiere die "Spalten" mit Insertionsort
+                for (i = h; i < _array.Length; i++)
+                {
+                    t = _array[i];
+                    j = i;
+                    while (j >= h && _array[j - h] > t)
+                    {
+                        _array[j] = _array[j - h];
+                        j = j - h;
+                    }
+                    _array[j] = t;
+                }
+            }
+        }
+
+        /// <summary>
         /// Swap two positions from an array
         /// </summary>
         /// <param name="_array">array to swap</param>
         /// <param name="_firstArrayLocation">first position to swap</param>
         /// <param name="_secondArrayLocation">second position to swap</param>
         /// <returns>new swapped array. returns null array when swap didnt work (Out of Range Exception)</returns>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public static void SwapArrayPlace(Array _array, int _firstArrayLocation, int _secondArrayLocation)
         {
             if (_firstArrayLocation < 0 || _firstArrayLocation >= _array.GetLength(0))
@@ -370,6 +400,5 @@ namespace SortAlgorithm
             _array.SetValue(p2, _firstArrayLocation);
             _array.SetValue(p1, _secondArrayLocation);
         }
-
     }
 }
