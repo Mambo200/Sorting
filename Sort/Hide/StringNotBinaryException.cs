@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SortAlgorithm
+namespace Hide
 {
     public class StringNotBinaryException : Exception
     {
