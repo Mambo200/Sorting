@@ -133,6 +133,29 @@ namespace SortAlgorithm
             return toReturn;
         }
 
+        public static string Combine(string _binOne, string _binTwo, bool _throwWhenOverflow = false)
+        {
+            if (!IsBinary(_binOne)) throw new StringNotBinaryException($"\"{_binOne}\" is not binary.");
+            if (!IsBinary(_binTwo)) throw new StringNotBinaryException($"\"{_binTwo}\" is not binary.");
+            if (_throwWhenOverflow)
+                if (_binOne[0] == '1' && _binTwo[0] == '1') throw new OverflowException("binary would overflow");
+            string toReturn = "";
+            bool addone = false;
+
+            for (int i = 8 - 1; i >= 0; i--)
+            {
+                char c1 = _binOne[i];
+                char c2 = _binTwo[i];
+
+                // check numbers
+                if (c1 == '0' && c2 == '0') { toReturn = toReturn.Insert(0, addone ? "1" : "0"); addone = false; }
+                else if (c1 == '1' && c2 == '1') { toReturn = toReturn.Insert(0, addone ? "1" : "0"); addone = true; }
+                else if (c1 == '1' || c2 == '1') { toReturn = toReturn.Insert(0, addone ? "0" : "1"); }
+            }
+
+            return toReturn;
+        }
+
         private static bool IsBinary(string _binaryString)
         {
             if (_binaryString.Length != 8) return false;
