@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SortAlgorithm
+namespace Hide
 {
     public static class Converting
     {
@@ -133,6 +133,15 @@ namespace SortAlgorithm
             return toReturn;
         }
 
+        /// <summary>
+        /// Combine two binary formatted strings
+        /// </summary>
+        /// <param name="_binOne">first binary</param>
+        /// <param name="_binTwo">second binary</param>
+        /// <param name="_throwWhenOverflow">true: Function throws an Exception if overflow</param>
+        /// <exception cref="StringNotBinaryException">String was in the wrong format</exception>
+        /// <exception cref="OverflowException">Addition causes an overflow</exception>
+        /// <returns></returns>
         public static string Combine(string _binOne, string _binTwo, bool _throwWhenOverflow = false)
         {
             if (!IsBinary(_binOne)) throw new StringNotBinaryException($"\"{_binOne}\" is not binary.");

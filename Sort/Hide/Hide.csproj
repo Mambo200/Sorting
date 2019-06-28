@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DDB943AA-7C55-4965-A1CE-FE9955CA1A25}</ProjectGuid>
+    <ProjectGuid>{EEE8D8DA-0928-414C-B52E-BB6B9D570A2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sort</RootNamespace>
-    <AssemblyName>Sort</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <RootNamespace>Hide</RootNamespace>
+    <AssemblyName>Hide</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -31,8 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,23 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvertingStuff.cs" />
-    <Compile Include="HelperTest.cs" />
-    <Compile Include="HideTesting.cs" />
-    <Compile Include="NotEqualException.cs" />
-    <Compile Include="SortTesting.cs" />
-    <Compile Include="Helper.cs" />
+    <Compile Include="Hiding.cs" />
+    <Compile Include="Converting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hide\Hide.csproj">
-      <Project>{eee8d8da-0928-414c-b52e-bb6b9d570a2e}</Project>
-      <Name>Hide</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SortAlgorithm\SortAlgorithm.csproj">
-      <Project>{9a0376eb-524a-4429-8a0c-b94ec1a34085}</Project>
-      <Name>SortAlgorithm</Name>
-    </ProjectReference>
+    <Compile Include="StringNotBinaryException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
