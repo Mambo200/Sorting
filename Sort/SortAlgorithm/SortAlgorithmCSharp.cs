@@ -343,25 +343,23 @@ namespace SortAlgorithm
         /// <param name="_array">array to sort</param>
         public static void ShellSortInt(int[] _array)
         {
-            int i, j, k, h, t;
-
             int[] spalten = new int[_array.Length];
             Array.Copy(_array, spalten, _array.Length);
 
-            for (k = 0; k < spalten.Length; k++)
+            for (int i = 0; i < spalten.Length; i++)
             {
-                h = spalten[k];
+                int h = spalten[i];
                 // Sortiere die "Spalten" mit Insertionsort
-                for (i = h; i < _array.Length; i++)
+                for (int e = h; e < _array.Length; e++)
                 {
-                    t = _array[i];
-                    j = i;
-                    while (j >= h && _array[j - h] > t)
+                    int x = _array[e];
+                    int y = e;
+                    while (y >= h && _array[y - h] > x)
                     {
-                        _array[j] = _array[j - h];
-                        j = j - h;
+                        _array[y] = _array[y - h];
+                        y = y - h;
                     }
-                    _array[j] = t;
+                    _array[y] = x;
                 }
             }
         }

@@ -291,6 +291,39 @@ namespace Sort
             return toReturn;
         }
 
+        public string GetRandomChar()
+        {
+            string toReturn = "";
+            for (int i = 0; i < 8; i++)
+            {
+                int b = r.Next(2);
+                toReturn += b;
+            }
+            return toReturn;
+        }
+
+        public bool ThrowException (Action _action, Exception _expected, out Exception _actually)
+        {
+            bool toReturn = false;
+            _actually = null;
+
+            try
+            {
+                Task t = new Task(_action);
+                t.Start();
+                t.Wait();
+            }
+            catch (Exception e)
+            {
+                Type e1 = e.InnerException.GetType();
+                Type e2 = _expected.GetType();
+                if (e1 == e2) toReturn = true;
+                _actually = e.InnerException;
+            }
+
+            return toReturn;
+        }
+
         /// <summary>
         /// convert a number to char
         /// </summary>

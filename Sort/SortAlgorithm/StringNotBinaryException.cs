@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SortAlgorithm
 {
-    class StringNotBinaryException : Exception
+    public class StringNotBinaryException : Exception
     {
         public StringNotBinaryException() { }
         public StringNotBinaryException(string _message) : base (_message) { }
