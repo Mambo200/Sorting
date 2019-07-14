@@ -133,25 +133,38 @@ namespace Hide
             return toReturn;
         }
 
+        /// <summary>
+        /// Convert Strings to hexadecimal.
+        /// </summary>
+        /// <param name="_value">the string which shall be converted</param>
+        /// <returns>converted string</returns>
         public static string[] StringToHex(string _value)
         {
 
             byte[] bytes = Encoding.Unicode.GetBytes(_value);
-            string[] toReturn = new string[bytes.Length];
+            string[] temp = new string[bytes.Length];
+            string[] toReturn = new string[temp.Length / 2];
             int i = 0;
             foreach (var t in bytes)
             {
-                toReturn[i++] = t.ToString("X2");
+                temp[i++] = t.ToString("X2");
             }
+
+            for (int y = 0; y < temp.Length; y+=2)
+            {
+                toReturn[y / 2] = temp[y];
+            }
+            
             return toReturn;
         }
 
         public static string HexToString(string[] _hex)
         {
-            string toReturn = "";
-            List<byte> b = new List<byte>();
+            if (IsHexadecimal(_hex)) throw new FormatException("at least one string was in the wrong Format");
 
-            for (int i = 0; i < _hex.Length; i += 2)
+            string toReturn = "";
+
+            for (int i = 0; i < _hex.Length; i++)
             {
 
                 var bytes = new byte[2];
@@ -159,7 +172,7 @@ namespace Hide
 
 
                 bytes[0] = Convert.ToByte(_hex[i].Substring(0, 2), 16);
-                bytes[1] = Convert.ToByte(_hex[i+1].Substring(0, 1), 16);
+                bytes[1] = Convert.ToByte("00".Substring(0, 2), 16);
 
                 toReturn += Encoding.Unicode.GetString(bytes);
             }
@@ -208,6 +221,29 @@ namespace Hide
             {
                 if (c != '0' &&
                     c != '1') return false;
+            }
+
+            return true;
+        }
+
+        private static bool IsHexadecimal(string _hexString)
+        {
+            if (_hexString.Length > 2 || _hexString.Length < 0) return false;
+
+            foreach (char c in _hexString)
+            {
+                if (c != '0' || c != '1' || c != '2' || c != '3' || c != '4' || c != '5' || c != '6' || c != '7' || c != '8' || c != '9' ||
+                    c != 'A' || c != 'B' || c != 'C' || c != 'D' || c != 'E' || c != 'F') return false;
+            }
+
+            return true;
+        }
+
+        private static bool IsHexadecimal(string[] _hexString)
+        {
+            for (int i = 0; i < _hexString.Length; i++)
+            {
+                if (!IsHexadecimal(_hexString[i])) return false;
             }
 
             return true;

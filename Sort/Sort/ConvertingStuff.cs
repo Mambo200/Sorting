@@ -114,6 +114,7 @@ namespace ConvertingStuff
     [TestClass]
     public class HexStringByte
     {
+        private static Helper h = new Helper();
         [TestMethod]
         public void HexToString()
         {
@@ -153,76 +154,66 @@ namespace ConvertingStuff
                 string[] hex = new string[]
                 {
                     "4C",
-                    "0",
                     "C3",
-                    "0",
                     "B6",
-                    "0",
                     "73",
-                    "0",
                     "63",
-                    "0",
                     "68",
-                    "0",
                     "65",
-                    "0",
                     "20",
-                    "0",
                     "53",
-                    "0",
                     "79",
-                    "0",
                     "73",
-                    "0",
                     "74",
-                    "0",
                     "65",
-                    "0",
                     "6D",
-                    "0",
                     "33",
-                    "0",
                     "32",
-                    "0",
                     "20",
-                    "0",
                     "75",
-                    "0",
                     "6D",
-                    "0",
                     "20",
-                    "0",
                     "7A",
-                    "0",
                     "75",
-                    "0",
                     "20",
-                    "0",
                     "67",
-                    "0",
                     "65",
-                    "0",
                     "77",
-                    "0",
                     "69",
-                    "0",
                     "6E",
-                    "0",
                     "6E",
-                    "0",
                     "65",
-                    "0",
                     "6E",
-                    "0",
-
                 };
 
                 string con = Converting.HexToString(hex);
+                Assert.AreEqual("LÃ¶sche System32 um zu gewinnen", con);
 
-                Assert.AreEqual(/*"LÃ¶sche System32 um zu gewinnen"*/ "Lösche System32 um zu gewinnen", con);
                 hex = new string[] { "4C", "65", "65", "72", "65" };
-
+                con = Converting.HexToString(hex);
                 Assert.AreEqual("Leere", con);
+            }
+        }
+
+        [TestMethod]
+        public void WrongFormat()
+        {
+            string[] hex;
+            string con = "";
+            {
+                hex = new string[] { "33", "55", "GF" };
+                bool ex = h.ThrowException(() => con = Converting.HexToString(hex), out Exception receivedException);
+
+                Assert.AreEqual(true, ex);
+            }
+
+            {
+                hex = new string[] { "4C", "65", "65", "72", "65" };
+                bool ex = h.ThrowException(() => con = Converting.HexToString(hex), out Exception receivedException);
+
+                Assert.AreEqual(false, ex);
+                Assert.AreEqual("Leere", con);
+
             }
         }
     }
