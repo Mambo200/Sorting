@@ -44,6 +44,8 @@ namespace ConvertingStuff
                 string aCon = Converting.BinaryToString(binary);
                 Assert.AreEqual(s, aCon);
             }
+
+
         }
 
         [TestMethod]
@@ -71,6 +73,8 @@ namespace ConvertingStuff
             b3 = Converting.Combine(b3, b1);
 
             Assert.AreEqual("00000100", b3);
+
+
         }
 
 
@@ -104,6 +108,122 @@ namespace ConvertingStuff
 
             Assert.AreEqual(true, ex);
 
+        }
+    }
+
+    [TestClass]
+    public class HexStringByte
+    {
+        [TestMethod]
+        public void HexToString()
+        {
+            {
+                string[] bytes = new string[]
+                {
+                    "01101101",
+                    "01101111",
+                    "01101110",
+                    "01101001",
+                    "01101011",
+                    "01100001",
+                    "00100000",
+                    "01100100",
+
+                    "01101001",
+                    "01100100",
+                    "00100000",
+                    "01110100",
+                    "01101000",
+                    "01101001",
+                    "01110011",
+                    "00101110"
+                };
+
+                string convert = Converting.BinaryToString(bytes);
+            }
+
+            {
+                string text = "Hallo Welt";
+                string[] hex = Converting.StringToHex(text);
+                string con = Converting.HexToString(hex);
+                Assert.AreEqual(text, con);
+            }
+
+            {
+                string[] hex = new string[]
+                {
+                    "4C",
+                    "0",
+                    "C3",
+                    "0",
+                    "B6",
+                    "0",
+                    "73",
+                    "0",
+                    "63",
+                    "0",
+                    "68",
+                    "0",
+                    "65",
+                    "0",
+                    "20",
+                    "0",
+                    "53",
+                    "0",
+                    "79",
+                    "0",
+                    "73",
+                    "0",
+                    "74",
+                    "0",
+                    "65",
+                    "0",
+                    "6D",
+                    "0",
+                    "33",
+                    "0",
+                    "32",
+                    "0",
+                    "20",
+                    "0",
+                    "75",
+                    "0",
+                    "6D",
+                    "0",
+                    "20",
+                    "0",
+                    "7A",
+                    "0",
+                    "75",
+                    "0",
+                    "20",
+                    "0",
+                    "67",
+                    "0",
+                    "65",
+                    "0",
+                    "77",
+                    "0",
+                    "69",
+                    "0",
+                    "6E",
+                    "0",
+                    "6E",
+                    "0",
+                    "65",
+                    "0",
+                    "6E",
+                    "0",
+
+                };
+
+                string con = Converting.HexToString(hex);
+
+                Assert.AreEqual(/*"LÃ¶sche System32 um zu gewinnen"*/ "Lösche System32 um zu gewinnen", con);
+                hex = new string[] { "4C", "65", "65", "72", "65" };
+
+                Assert.AreEqual("Leere", con);
+            }
         }
     }
 }

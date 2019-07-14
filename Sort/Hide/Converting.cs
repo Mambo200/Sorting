@@ -133,6 +133,41 @@ namespace Hide
             return toReturn;
         }
 
+        public static string[] StringToHex(string _value)
+        {
+
+            byte[] bytes = Encoding.Unicode.GetBytes(_value);
+            string[] toReturn = new string[bytes.Length];
+            int i = 0;
+            foreach (var t in bytes)
+            {
+                toReturn[i++] = t.ToString("X2");
+            }
+            return toReturn;
+        }
+
+        public static string HexToString(string[] _hex)
+        {
+            string toReturn = "";
+            List<byte> b = new List<byte>();
+
+            for (int i = 0; i < _hex.Length; i += 2)
+            {
+
+                var bytes = new byte[2];
+
+
+
+                bytes[0] = Convert.ToByte(_hex[i].Substring(0, 2), 16);
+                bytes[1] = Convert.ToByte(_hex[i+1].Substring(0, 1), 16);
+
+                toReturn += Encoding.Unicode.GetString(bytes);
+            }
+
+
+            return toReturn;
+        }
+
         /// <summary>
         /// Combine two binary formatted strings
         /// </summary>
