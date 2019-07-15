@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SortAlgorithm;
-using Hide;
+using HideConverting;
 
 using Helper = Sort.Helper;
 

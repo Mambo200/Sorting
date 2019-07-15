@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Hide;
+using HideConverting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Hide.Converting;
 
 namespace HelpTesting
 {
@@ -19,7 +20,7 @@ namespace HelpTesting
             string b2 = "11111111";
             string b3 = "";
 
-            Action a = new Action(() => b3 = Converting.Combine(b1, b2, true));
+            Action a = new Action(() => b3 = Binary.Combine(b1, b2, true));
             bool ex = h.ThrowException(a, new OverflowException(), out Exception exception);
 
             Assert.AreEqual(true, ex);
@@ -39,7 +40,7 @@ namespace HelpTesting
             string b2 = "11111111";
             string b3 = "";
 
-            Action a = new Action(() => b3 = Converting.Combine(b1, b2, true));
+            Action a = new Action(() => b3 = Binary.Combine(b1, b2, true));
             bool ex = h.ThrowException(a, out Exception exception);
 
             Assert.AreEqual(true, ex);

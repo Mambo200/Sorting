@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hide
+namespace HideConverting
 {
     public class HidingInt
     {
         private static Random r = new Random();
-        private string[] hp = Converting.StringToBinary("0");
+        private string[] hp = Hide.Converting.Binary.StringToBinary("0");
         public int Hp
         {
             get
@@ -20,13 +20,13 @@ namespace Hide
                 {
 
                     if (i % 2 != 0) continue;
-                    s += Converting.BinaryToChar(hp[i]);
+                    s += Hide.Converting.Binary.BinaryToChar(hp[i]);
                 }
                 return int.Parse(s);
             }
             set
             {
-                string[] temp = Converting.StringToBinary(Convert.ToString(value));
+                string[] temp = Hide.Converting.Binary.StringToBinary(Convert.ToString(value));
 
                 string[] temp2 = new string[temp.Length * 2];
                 hp = new string[temp2.Length];
@@ -34,7 +34,7 @@ namespace Hide
                 for (int i = 0; i < temp2.Length; i++)
                 {
                     if (i % 2 == 0) hp[i] = temp[i / 2];
-                    else hp[i] = Converting.CharToBinary(Convert.ToString(r.Next(10))[0]);
+                    else hp[i] = Hide.Converting.Binary.CharToBinary(Convert.ToString(r.Next(10))[0]);
 
                 }
             }
@@ -44,17 +44,17 @@ namespace Hide
     public class HidingFloat
     {
         private static Random r = new Random();
-        private string[] hp = Converting.StringToBinary("0");
+        private string[] hp = Hide.Converting.Binary.StringToBinary("0");
         public float Hp
         {
             get
             {
-                string temp = Converting.BinaryToString(hp);
+                string temp = Hide.Converting.Binary.BinaryToString(hp);
                 return float.Parse(temp);
             }
             set
             {
-                hp = Converting.StringToBinary(Convert.ToString(value));
+                hp = Hide.Converting.Binary.StringToBinary(Convert.ToString(value));
             }
         }
     }
@@ -62,17 +62,17 @@ namespace Hide
     public class HidingDecimal
     {
         private static Random r = new Random();
-        private string[] hp = Converting.StringToBinary("0");
+        private string[] hp = Hide.Converting.Binary.StringToBinary("0");
         public decimal Hp
         {
             get
             {
-                string temp = Converting.BinaryToString(hp);
+                string temp = Hide.Converting.Binary.BinaryToString(hp);
                 return decimal.Parse(temp);
             }
             set
             {
-                hp = Converting.StringToBinary(Convert.ToString(value));
+                hp = Hide.Converting.Binary.StringToBinary(Convert.ToString(value));
             }
         }
 
