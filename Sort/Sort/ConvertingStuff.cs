@@ -256,6 +256,7 @@ namespace ConvertingStuff
             string[] hex1;
             string[] hex2;
             string[] combine;
+            string[] expected;
 
             {
                 hex1 = new string[]
@@ -270,12 +271,34 @@ namespace ConvertingStuff
                 };
                 combine = Hexadecimal.Combine(hex1, hex2);
 
-                string[] expect = new string[]
+                expected = new string[]
                 {
                     "33",
                     "E7"
                 };
-                Assert.AreEqual(expect, combine);
+                Assert.AreEqual(true, h.CheckArray(expected, combine));
+            }
+
+            {
+                hex1 = new string[]
+                {
+                    "0F",
+                    "FF"
+                };
+                hex2 = new string[]
+                {
+                    "00",
+                    "02"
+                };
+
+                combine = Hexadecimal.Combine(hex1, hex2);
+
+                expected = new string[]
+                {
+                    "10",
+                    "01"
+                };
+                Assert.AreEqual(true, h.CheckArray(hex1, hex2));
             }
         }
     }

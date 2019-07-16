@@ -207,12 +207,19 @@ namespace Hide.Converting
             return toReturn;
         }
 
+        /// <summary>
+        /// Combines two hex values.
+        /// </summary>
+        /// <param name="_left">first hex value</param>
+        /// <param name="_right">second hex value</param>
+        /// <returns>new combined string array</returns>
+        /// <exception cref="NullReferenceException">One array is null.</exception>
+        /// <exception cref="FormatException">String was not in the Hexadecimal format.</exception>
+        /// <exception cref="IndexOutOfRangeException">Arrays do not have the same lengh.</exception>
         public static string[] Combine(string[] _left, string[] _right)
         {
             if (_left == null || _right == null) throw new NullReferenceException("One array is null.");
-            #region ERROR
             if (!IsHexadecimal(_left, _right)) throw new FormatException("String was not in the Hexadecimal format.");
-            #endregion
             if (_left.Length != _right.Length) throw new IndexOutOfRangeException("Arrays do not have the same lengh.");
             if (_left.Length == 0) return new string[0];
 
@@ -222,8 +229,11 @@ namespace Hide.Converting
             for (int i = _left.Length - 1; i >= 0; i--)
             {
                 toReturn.Insert(0, (Combine(_left[i], _right[i], overload, out outOverload)));
+                overload = outOverload;
             }
 
+            if (overload > 0)
+                toReturn.Insert(0, HexNumberToHexOriginal((short)overload));
             return toReturn.ToArray();
         }
 
@@ -337,7 +347,7 @@ namespace Hide.Converting
         }
         public static string HexToString(string[] _hex)
         {
-            if (IsHexadecimal(_hex)) throw new FormatException("at least one string was in the wrong Format");
+            if (!IsHexadecimal(_hex)) throw new FormatException("at least one string was in the wrong Format");
 
             string toReturn = "";
 
@@ -358,19 +368,33 @@ namespace Hide.Converting
             return toReturn;
         }
 
+        /// <summary>
+        /// Determines whether the specified hexadecimal string is hexadecimal.
+        /// </summary>
+        /// <param name="_hexString">The hexadecimal string.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified hexadecimal string is hexadecimal; otherwise, <c>false</c>.
+        /// </returns>
         private static bool IsHexadecimal(string _hexString)
         {
             if (_hexString.Length > 2 || _hexString.Length < 0) return false;
 
             foreach (char c in _hexString)
             {
-                if (c != '0' || c != '1' || c != '2' || c != '3' || c != '4' || c != '5' || c != '6' || c != '7' || c != '8' || c != '9' ||
-                    c != 'A' || c != 'B' || c != 'C' || c != 'D' || c != 'E' || c != 'F') return false;
+                if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8' && c != '9' &&
+                    c != 'A' && c != 'B' && c != 'C' && c != 'D' && c != 'E' && c != 'F') return false;
             }
 
             return true;
         }
 
+        /// <summary>
+        /// Determines whether the specified hexadecimal string is hexadecimal.
+        /// </summary>
+        /// <param name="_hexString">The hexadecimal string.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified hexadecimal string is hexadecimal; otherwise, <c>false</c>.
+        /// </returns>
         private static bool IsHexadecimal(string[] _hexString)
         {
             for (int i = 0; i < _hexString.Length; i++)
@@ -381,6 +405,14 @@ namespace Hide.Converting
             return true;
         }
 
+        /// <summary>
+        /// Determines whether the specified left is hexadecimal.
+        /// </summary>
+        /// <param name="_left">first string array</param>
+        /// <param name="_right">second string array</param>
+        /// <returns>
+        ///   <c>true</c> if the specified left is hexadecimal; otherwise, <c>false</c>.
+        /// </returns>
         private static bool IsHexadecimal(string[] _left, string[] _right)
         {
             if (!IsHexadecimal(_left) || !IsHexadecimal(_right)) return false;
