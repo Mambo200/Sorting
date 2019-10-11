@@ -41,5 +41,17 @@ namespace HideTesting
             hid.Hp = test;
             Assert.AreEqual(test, hid.Hp);
         }
+
+        [TestMethod]
+        public void CreateStringValue()
+        {
+            string test = "Hanhandada";
+            HidingString hid = new HidingString(test);
+            Assert.AreEqual(test, hid.Value);
+
+            test = "newBla";
+            hid.Value = test;
+            Assert.AreEqual(test, hid.Value);
+        }
     }
 }
