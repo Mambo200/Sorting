@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Hide.Converting;
+
 namespace Sort
 {
     public class Helper
@@ -285,7 +287,7 @@ namespace Sort
                     binary += r.Next(2);
                 }
 
-                toReturn += Hide.Converting.BinaryToChar(binary);
+                toReturn += Binary.BinaryToChar(binary);
             }
 
             return toReturn;
@@ -432,7 +434,6 @@ namespace Sort
             }
             return s;
         }
-
         
     }
 }

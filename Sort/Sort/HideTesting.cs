@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Hide;
+using HideConverting;
 using Sort;
 using ConvertingStuff;
 
@@ -40,6 +40,18 @@ namespace HideTesting
             HidingDecimal hid = new HidingDecimal();
             hid.Hp = test;
             Assert.AreEqual(test, hid.Hp);
+        }
+
+        [TestMethod]
+        public void CreateStringValue()
+        {
+            string test = "Hanhandada";
+            HidingString hid = new HidingString(test);
+            Assert.AreEqual(test, hid.Value);
+
+            test = "newBla";
+            hid.Value = test;
+            Assert.AreEqual(test, hid.Value);
         }
     }
 }
